@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:meds/pages/add-medicine.dart';
+import 'package:meds/pages/add_medicine/add-medicine.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
