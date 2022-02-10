@@ -45,8 +45,6 @@ class AddMedicineProvider extends ChangeNotifier {
   }
 
   set medName(value) {
-    print('value from setter');
-    print(value);
     _medName = value;
 
     notifyListeners();

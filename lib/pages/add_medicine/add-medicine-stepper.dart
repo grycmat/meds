@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:meds/pages/add_medicine/add-medicine-list-tile.dart';
 import 'package:meds/pages/add_medicine/steps/main-info-step.dart';
+import 'package:meds/pages/add_medicine/steps/step-additional-info.dart';
 import 'package:meds/providers/add-medicine-provider.dart';
 import 'package:meds/providers/frequency-enum.dart';
 import 'package:provider/provider.dart';
@@ -68,29 +69,7 @@ class AddMedicineStepper extends StatelessWidget {
               title: Text(
                 provider.getStepName(key: 'additional'),
               ),
-              content: Column(
-                children: const [
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: 'Stock',
-                        border: OutlineInputBorder(),
-                        prefixIcon: SizedBox(
-                          width: 20,
-                          child: Center(
-                            child: FaIcon(FontAwesomeIcons.medkit),
-                          ),
-                        )),
-                  ),
-                  TextField(
-                    maxLines: 4,
-                    decoration: InputDecoration(
-                      labelText: 'Comment',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ],
-              ),
+              content: const StepAdditionalInfo(),
             )
           ]),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meds/pages/add_medicine/add-medicine-list-tile.dart';
-import 'package:meds/pages/add_medicine/add-medicine.dart';
 import 'package:meds/providers/frequency-enum.dart';
 
 class ScheduleStep extends StatelessWidget {
@@ -9,7 +8,7 @@ class ScheduleStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: const [
         AddMedicineListTile(
           title: 'One time a day',
           frequency: Frequency.one,
