@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:meds/pages/add_medicine/add-medicine-list-tile.dart';
 import 'package:meds/pages/add_medicine/steps/main-info-step.dart';
+import 'package:meds/pages/add_medicine/steps/schedule-step.dart';
 import 'package:meds/pages/add_medicine/steps/step-additional-info.dart';
 import 'package:meds/providers/add-medicine-provider.dart';
-import 'package:meds/providers/frequency-enum.dart';
 import 'package:provider/provider.dart';
 
 class AddMedicineStepper extends StatelessWidget {
@@ -42,29 +40,10 @@ class AddMedicineStepper extends StatelessWidget {
               content: const MainInfoStep(),
             ),
             Step(
-              title: Text(
-                provider.getStepName(key: 'schedule'),
-              ),
-              content: Column(
-                children: const [
-                  AddMedicineListTile(
-                    title: 'One time a day',
-                    frequency: Frequency.one,
-                    numberOfTimeSelectors: 1,
-                  ),
-                  AddMedicineListTile(
-                    title: 'Two times a day',
-                    frequency: Frequency.two,
-                    numberOfTimeSelectors: 2,
-                  ),
-                  AddMedicineListTile(
-                    title: 'Three times a day',
-                    frequency: Frequency.three,
-                    numberOfTimeSelectors: 3,
-                  )
-                ],
-              ),
-            ),
+                title: Text(
+                  provider.getStepName(key: 'schedule'),
+                ),
+                content: const ScheduleStep()),
             Step(
               title: Text(
                 provider.getStepName(key: 'additional'),
