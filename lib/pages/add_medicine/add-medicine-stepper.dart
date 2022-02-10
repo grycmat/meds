@@ -120,56 +120,22 @@ class AddMedicineStepper extends StatelessWidget {
                 provider.getStepName(key: 'schedule'),
               ),
               content: Column(
-                children: [
-                  RadioListTile<Frequency>(
-                    title: const Text('Once a day'),
-                    value: Frequency.one,
-                    groupValue: provider.frequency,
-                    onChanged: (Frequency? f) {
-                      provider.frequency = f;
-                    },
+                children: const [
+                  AddMedicineListTile(
+                    title: 'One time a day',
+                    frequency: Frequency.one,
+                    numberOfTimeSelectors: 1,
                   ),
-                  Container(
-                    child: provider.frequency == Frequency.one
-                        ? _generateTimeDisplay(
-                            context: context,
-                            number: 1,
-                            times: provider.times,
-                            doze: provider.doze)
-                        : null,
+                  AddMedicineListTile(
+                    title: 'Two times a day',
+                    frequency: Frequency.two,
+                    numberOfTimeSelectors: 2,
                   ),
-                  RadioListTile<Frequency>(
-                    title: const Text('Two times a day'),
-                    value: Frequency.two,
-                    groupValue: provider.frequency,
-                    onChanged: (Frequency? f) {
-                      provider.frequency = f;
-                    },
-                  ),
-                  Container(
-                      child: provider.frequency == Frequency.two
-                          ? _generateTimeDisplay(
-                              context: context,
-                              number: 2,
-                              times: provider.times,
-                              doze: provider.doze)
-                          : null),
-                  RadioListTile<Frequency>(
-                    title: const Text('Three times a day'),
-                    value: Frequency.three,
-                    groupValue: provider.frequency,
-                    onChanged: (Frequency? f) {
-                      provider.frequency = f;
-                    },
-                  ),
-                  Container(
-                      child: provider.frequency == Frequency.three
-                          ? _generateTimeDisplay(
-                              context: context,
-                              number: 3,
-                              times: provider.times,
-                              doze: provider.doze)
-                          : null),
+                  AddMedicineListTile(
+                    title: 'Three times a day',
+                    frequency: Frequency.three,
+                    numberOfTimeSelectors: 3,
+                  )
                 ],
               ),
             ),
@@ -202,6 +168,96 @@ class AddMedicineStepper extends StatelessWidget {
               ),
             )
           ]),
+    );
+  }
+}
+
+class AddMedicineListTile extends StatelessWidget {
+  const AddMedicineListTile(
+      {Key? key,
+      required this.title,
+      required this.frequency,
+      required this.numberOfTimeSelectors})
+      : super(key: key);
+  final String title;
+  final Frequency frequency;
+  final int numberOfTimeSelectors;
+  Widget _generateTimeDisplay(
+      {required BuildContext context,
+      required int number,
+      required List<TimeOfDay> times,
+      required List<int> doze}) {
+    return Column(children: [
+      for (int i = 0; i < number; i++) ...[
+        _generateTimeItem(
+            context: context, index: i, time: times[i], doze: doze[i])
+      ]
+    ]);
+  }
+
+  Widget _generateTimeItem(
+      {required BuildContext context,
+      required int index,
+      required TimeOfDay time,
+      required int doze}) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextFormField(
+              onEditingComplete: () {},
+              onTap: () => showTimePicker(context: context, initialTime: time),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                prefixIcon: SizedBox(
+                    width: 10,
+                    child: Center(child: FaIcon(FontAwesomeIcons.clock))),
+              ),
+              initialValue:
+                  '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}'),
+        ),
+        Expanded(
+          child: TextFormField(
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              prefixIcon: SizedBox(
+                width: 10,
+                child: Center(
+                  child: FaIcon(FontAwesomeIcons.sortNumericUpAlt),
+                ),
+              ),
+            ),
+            initialValue: doze.toString(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AddMedicineProvider>(
+      builder: (_, provider, __) => Column(
+        children: [
+          RadioListTile<Frequency>(
+            title: Text(title),
+            value: frequency,
+            groupValue: provider.frequency,
+            onChanged: (Frequency? f) {
+              provider.frequency = f;
+            },
+          ),
+          Container(
+            child: provider.frequency == frequency
+                ? _generateTimeDisplay(
+                    context: context,
+                    number: numberOfTimeSelectors,
+                    times: provider.times,
+                    doze: provider.doze)
+                : null,
+          ),
+        ],
+      ),
     );
   }
 }
