@@ -4,8 +4,6 @@ import 'package:meds/pages/add_medicine/add-medicine-stepper.dart';
 import 'package:meds/providers/add-medicine-provider.dart';
 import 'package:provider/provider.dart';
 
-enum Frequency { one, two, three }
-
 class AddMedicine extends StatefulWidget {
   const AddMedicine({Key? key}) : super(key: key);
 
@@ -23,7 +21,7 @@ class _AddMedicineState extends State<AddMedicine> {
               padding: const EdgeInsets.all(20),
               child: ChangeNotifierProvider<AddMedicineProvider>(
                 create: (context) => AddMedicineProvider(),
-                child: AddMedicineStepper(),
+                child: const AddMedicineStepper(),
               ),
             ),
           ),

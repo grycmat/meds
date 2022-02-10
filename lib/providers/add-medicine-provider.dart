@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-enum Frequency { one, two, three }
+import 'package:meds/providers/frequency-enum.dart';
 
 class AddMedicineProvider extends ChangeNotifier {
   final Map<String, String> _stepName = {
