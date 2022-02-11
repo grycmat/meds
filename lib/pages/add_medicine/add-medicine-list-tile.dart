@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:meds/providers/add-medicine-provider.dart';
+import 'package:meds/providers/add-medicine-model-provider.dart';
 import 'package:meds/providers/frequency-enum.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +68,7 @@ class AddMedicineListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AddMedicineProvider>(
+    return Consumer<AddMedicineModelProvider>(
       builder: (_, provider, __) => Column(
         children: [
           RadioListTile<Frequency>(
@@ -85,7 +85,7 @@ class AddMedicineListTile extends StatelessWidget {
                     context: context,
                     number: numberOfTimeSelectors,
                     times: provider.times,
-                    doze: provider.doze)
+                    doze: provider.dozes)
                 : null,
           ),
         ],

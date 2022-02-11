@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:meds/providers/add-medicine-provider.dart';
+import 'package:meds/model/med-types.dart';
+import 'package:meds/providers/add-medicine-model-provider.dart';
 import 'package:provider/provider.dart';
 
 class MainInfoStep extends StatelessWidget {
@@ -8,11 +9,11 @@ class MainInfoStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AddMedicineProvider>(
-      builder: (_, provider, __) => Column(children: [
+    return Consumer<AddMedicineModelProvider>(
+      builder: (_, addMedicineModelProvider, __) => Column(children: [
         TextField(
           onChanged: (val) {
-            provider.medName = val;
+            addMedicineModelProvider.medName = val;
           },
           decoration: const InputDecoration(
               border: OutlineInputBorder(), labelText: 'Name'),
@@ -24,11 +25,10 @@ class MainInfoStep extends StatelessWidget {
             FaIcon(FontAwesomeIcons.weight),
           ],
           onPressed: (int index) {
-            for (var i = 0; i <= index; i++) {
-              provider.setMedType(i, index == i ? true : false);
-            }
+            addMedicineModelProvider.medType = MedTypes[index];
           },
-          isSelected: provider.medTypes.values.toList(),
+          isSelected: List<bool>.generate(3,
+              (index) => addMedicineModelProvider.medType == MedTypes[index]),
         ),
       ]),
     );
