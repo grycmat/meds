@@ -11,24 +11,30 @@ class MainInfoStep extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AddMedicineModelProvider>(
       builder: (_, addMedicineModelProvider, __) => Column(children: [
-        TextField(
-          onChanged: (val) {
-            addMedicineModelProvider.medName = val;
-          },
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(), labelText: 'Name'),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            onChanged: (val) {
+              addMedicineModelProvider.medName = val;
+            },
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: 'Name'),
+          ),
         ),
-        ToggleButtons(
-          children: const [
-            FaIcon(FontAwesomeIcons.pills),
-            FaIcon(FontAwesomeIcons.syringe),
-            FaIcon(FontAwesomeIcons.weight),
-          ],
-          onPressed: (int index) {
-            addMedicineModelProvider.medType = MedTypes[index];
-          },
-          isSelected: List<bool>.generate(3,
-              (index) => addMedicineModelProvider.medType == MedTypes[index]),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ToggleButtons(
+            children: const [
+              FaIcon(FontAwesomeIcons.pills),
+              FaIcon(FontAwesomeIcons.syringe),
+              FaIcon(FontAwesomeIcons.weight),
+            ],
+            onPressed: (int index) {
+              addMedicineModelProvider.medType = MedTypes[index];
+            },
+            isSelected: List<bool>.generate(3,
+                (index) => addMedicineModelProvider.medType == MedTypes[index]),
+          ),
         ),
       ]),
     );

@@ -18,7 +18,11 @@ class AddMedicineStepper extends StatefulWidget {
 class _AddMedicineStepperState extends State<AddMedicineStepper> {
   final int _numberOfSteps = 2;
   late int _step;
-  String _generateFirstStepName({required AddMedicineModelProvider provider}) =>
+
+  _getStepName({required StepName key}) => StepNames[key];
+
+  String _generateMainInfoStepName(
+          {required AddMedicineModelProvider provider}) =>
       provider.medName != ''
           ? '${provider.medName}, ${MedNames[provider.medType]}'
           : '';
@@ -29,16 +33,20 @@ class _AddMedicineStepperState extends State<AddMedicineStepper> {
     super.initState();
   }
 
-  _getStepName({required StepName key}) => StepNames[key];
   @override
   Widget build(BuildContext context) {
     return Consumer<AddMedicineModelProvider>(
       builder: (_, addMedicineModelProvider, __) => Stepper(
           controlsBuilder: (context, details) => Container(
                 child: _step < _numberOfSteps
-                    ? ElevatedButton(
-                        onPressed: details.onStepContinue,
-                        child: const Text('Next'),
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            onPressed: details.onStepContinue,
+                            child: const Text('Next'),
+                          ),
+                        ],
                       )
                     : null,
               ),
@@ -56,7 +64,8 @@ class _AddMedicineStepperState extends State<AddMedicineStepper> {
           steps: [
             Step(
               title: Text(
-                  _generateFirstStepName(provider: addMedicineModelProvider)),
+                _generateMainInfoStepName(provider: addMedicineModelProvider),
+              ),
               content: const MainInfoStep(),
             ),
             Step(

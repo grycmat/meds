@@ -9,6 +9,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        shadowColor: Colors.blueGrey,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         title: const Text("Home"),
       ),
       bottomNavigationBar: BottomNavigationBar(

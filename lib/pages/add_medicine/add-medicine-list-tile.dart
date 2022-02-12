@@ -14,6 +14,7 @@ class AddMedicineListTile extends StatelessWidget {
   final String title;
   final Frequency frequency;
   final int numberOfTimeSelectors;
+
   Widget _generateTimeDisplay(
       {required BuildContext context,
       required int number,
@@ -35,31 +36,38 @@ class AddMedicineListTile extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: TextFormField(
-              onEditingComplete: () {},
-              onTap: () => showTimePicker(context: context, initialTime: time),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+                onEditingComplete: () {},
+                onTap: () =>
+                    showTimePicker(context: context, initialTime: time),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  prefixIcon: SizedBox(
+                      width: 10,
+                      child: Center(child: FaIcon(FontAwesomeIcons.clock))),
+                ),
+                initialValue:
+                    '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}'),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 prefixIcon: SizedBox(
-                    width: 10,
-                    child: Center(child: FaIcon(FontAwesomeIcons.clock))),
-              ),
-              initialValue:
-                  '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}'),
-        ),
-        Expanded(
-          child: TextFormField(
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: SizedBox(
-                width: 10,
-                child: Center(
-                  child: FaIcon(FontAwesomeIcons.sortNumericUpAlt),
+                  width: 10,
+                  child: Center(
+                    child: FaIcon(FontAwesomeIcons.sortNumericUpAlt),
+                  ),
                 ),
               ),
+              initialValue: doze.toString(),
             ),
-            initialValue: doze.toString(),
           ),
         ),
       ],
