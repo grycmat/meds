@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meds/model/med.dart';
 import 'package:meds/pages/add_medicine/add-medicine-list-tile.dart';
-import 'package:meds/providers/frequency-enum.dart';
 
 class ScheduleStep extends StatelessWidget {
   const ScheduleStep({Key? key}) : super(key: key);

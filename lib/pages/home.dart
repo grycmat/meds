@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:meds/pages/add_medicine/add-medicine.dart';
+import 'package:meds/pages/meds-list.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,6 +9,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: const MedsList(),
       appBar: AppBar(
         centerTitle: true,
         shadowColor: Colors.blueGrey,
@@ -30,6 +32,7 @@ class Home extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

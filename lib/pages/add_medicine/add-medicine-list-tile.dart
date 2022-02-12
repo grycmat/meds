@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:meds/model/med.dart';
 import 'package:meds/providers/add-medicine-model-provider.dart';
-import 'package:meds/providers/frequency-enum.dart';
 import 'package:provider/provider.dart';
 
 class AddMedicineListTile extends StatelessWidget {
@@ -17,19 +17,25 @@ class AddMedicineListTile extends StatelessWidget {
 
   Widget _generateTimeDisplay(
       {required BuildContext context,
+      required AddMedicineModelProvider provider,
       required int number,
       required List<TimeOfDay> times,
       required List<int> doze}) {
     return Column(children: [
       for (int i = 0; i < number; i++) ...[
         _generateTimeItem(
-            context: context, index: i, time: times[i], doze: doze[i])
+            context: context,
+            provider: provider,
+            index: i,
+            time: times[i],
+            doze: doze[i])
       ]
     ]);
   }
 
   Widget _generateTimeItem(
       {required BuildContext context,
+      required AddMedicineModelProvider provider,
       required int index,
       required TimeOfDay time,
       required int doze}) {
@@ -39,9 +45,13 @@ class AddMedicineListTile extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
+                readOnly: true,
                 onEditingComplete: () {},
-                onTap: () =>
-                    showTimePicker(context: context, initialTime: time),
+                onTap: () async {
+                  var selectedTime =
+                      await showTimePicker(context: context, initialTime: time);
+                  provider.modifyTime(index: index, time: selectedTime!);
+                },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: SizedBox(
@@ -56,6 +66,9 @@ class AddMedicineListTile extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
+              onChanged: (value) {
+                provider.modifyDoze(index: index, doze: int.parse(value));
+              },
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -91,6 +104,7 @@ class AddMedicineListTile extends StatelessWidget {
             child: provider.frequency == frequency
                 ? _generateTimeDisplay(
                     context: context,
+                    provider: provider,
                     number: numberOfTimeSelectors,
                     times: provider.times,
                     doze: provider.dozes)

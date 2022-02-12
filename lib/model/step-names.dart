@@ -1,7 +1,7 @@
-import 'package:meds/providers/step-name-enum.dart';
+enum StepName { name, schedule, additional }
 
 final Map<StepName, String> StepNames = {
-  StepName.Name: 'Basic info',
-  StepName.Schedule: 'Schedule',
-  StepName.Additional: '(Optional) Supplies, other info',
+  StepName.name: 'Basic info',
+  StepName.schedule: 'Schedule',
+  StepName.additional: '(Optional) Supplies, other info',
 };

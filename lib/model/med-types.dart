@@ -1,3 +1,3 @@
-import 'package:meds/providers/med-type-enum.dart';
+import 'package:meds/model/med.dart';
 
-final List<MedType> MedTypes = [MedType.Pill, MedType.Syringe, MedType.Test];
+final List<MedType> MedTypes = [MedType.pill, MedType.syringe, MedType.test];

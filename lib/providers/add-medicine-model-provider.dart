@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meds/providers/frequency-enum.dart';
-import 'package:meds/providers/med-type-enum.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:meds/main.dart';
+import 'package:meds/model/med.dart';
 
 class AddMedicineModelProvider extends ChangeNotifier {
   Frequency _frequency = Frequency.one;
   String _medName = '';
-  MedType _medType = MedType.Pill;
+  MedType _medType = MedType.pill;
   List<int> _dozes = [1, 1, 1];
   List<TimeOfDay> _times = List<TimeOfDay>.generate(
     3,
@@ -17,6 +18,15 @@ class AddMedicineModelProvider extends ChangeNotifier {
   List<int> get dozes => _dozes;
   MedType get medType => _medType;
   List<TimeOfDay> get times => _times;
+
+  Future<int> save() {
+    return Hive.box(MEDS).add(Med(
+        frequency: _frequency,
+        medName: _medName,
+        medType: _medType,
+        dozes: _dozes,
+        times: _times));
+  }
 
   set frequency(value) {
     _frequency = value;

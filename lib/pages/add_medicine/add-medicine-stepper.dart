@@ -5,7 +5,6 @@ import 'package:meds/pages/add_medicine/steps/main-info-step.dart';
 import 'package:meds/pages/add_medicine/steps/schedule-step.dart';
 import 'package:meds/pages/add_medicine/steps/additional-info-step.dart';
 import 'package:meds/providers/add-medicine-model-provider.dart';
-import 'package:meds/providers/step-name-enum.dart';
 import 'package:provider/provider.dart';
 
 class AddMedicineStepper extends StatefulWidget {
@@ -70,13 +69,13 @@ class _AddMedicineStepperState extends State<AddMedicineStepper> {
             ),
             Step(
               title: Text(
-                _getStepName(key: StepName.Schedule),
+                _getStepName(key: StepName.schedule),
               ),
               content: const ScheduleStep(),
             ),
             Step(
               title: Text(
-                _getStepName(key: StepName.Additional),
+                _getStepName(key: StepName.additional),
               ),
               content: const AdditionalInfoStep(),
             )

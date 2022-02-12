@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:meds/providers/frequency-enum.dart';
-import 'package:meds/providers/med-type-enum.dart';
-import 'package:provider/provider.dart';
+import 'package:meds/model/med.dart';
 
 class AddMedicineModel extends ChangeNotifier {
   Frequency _frequency = Frequency.one;
   String _medName = '';
-  MedType _medType = MedType.Pill;
+  MedType _medType = MedType.pill;
   final List<int> _dozes = [];
   final List<TimeOfDay> _times = [];
 

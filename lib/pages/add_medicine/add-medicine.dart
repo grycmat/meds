@@ -7,7 +7,9 @@ import 'package:provider/provider.dart';
 class AddMedicine extends StatelessWidget {
   const AddMedicine({Key? key}) : super(key: key);
 
-  void _saveMedicine(AddMedicineModelProvider medicine) {}
+  Future<int> _saveMedicine(AddMedicineModelProvider provider) async {
+    return provider.save();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,25 +19,29 @@ class AddMedicine extends StatelessWidget {
           create: (_) => AddMedicineModelProvider(),
         ),
       ],
-      child: Scaffold(
-        appBar: AppBar(
-          leading: ElevatedButton(
-              onPressed: () {}, child: FaIcon(FontAwesomeIcons.ban)),
-          actions: [
-            ElevatedButton(
+      child: Consumer<AddMedicineModelProvider>(
+        builder: (_, provider, __) => Scaffold(
+          appBar: AppBar(
+            leading: ElevatedButton(
                 onPressed: () {
-                  var medicine = Provider.of<AddMedicineModelProvider>(context,
-                      listen: false);
-                  _saveMedicine(medicine);
+                  Navigator.of(context).pop();
                 },
-                child: FaIcon(FontAwesomeIcons.check))
-          ],
-        ),
-        body: const SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: AddMedicineStepper(),
+                child: FaIcon(FontAwesomeIcons.ban)),
+            actions: [
+              ElevatedButton(
+                  onPressed: () async {
+                    await _saveMedicine(provider);
+                    Navigator.of(context).pop();
+                  },
+                  child: FaIcon(FontAwesomeIcons.check))
+            ],
+          ),
+          body: const SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: AddMedicineStepper(),
+              ),
             ),
           ),
         ),
