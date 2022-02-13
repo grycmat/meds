@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meds/model/frequency-names.dart';
 import 'package:meds/model/med.dart';
 import 'package:meds/pages/add_medicine/add-medicine-list-tile.dart';
 
@@ -8,19 +9,19 @@ class ScheduleStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
         AddMedicineListTile(
-          title: 'One time a day',
+          title: FrequencyNames[Frequency.one]!,
           frequency: Frequency.one,
           numberOfTimeSelectors: 1,
         ),
         AddMedicineListTile(
-          title: 'Two times a day',
+          title: FrequencyNames[Frequency.two]!,
           frequency: Frequency.two,
           numberOfTimeSelectors: 2,
         ),
         AddMedicineListTile(
-          title: 'Three times a day',
+          title: FrequencyNames[Frequency.three]!,
           frequency: Frequency.three,
           numberOfTimeSelectors: 3,
         )
