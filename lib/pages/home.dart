@@ -9,25 +9,31 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      extendBody: true,
       body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               image: AssetImage('assets/images/meds_background.jpg'),
             ),
           ),
           child: const MedsList()),
       appBar: AppBar(
+        elevation: 1,
         centerTitle: true,
         shadowColor: Colors.blueGrey,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        title: const Text("Home"),
+        title: Text(
+          "Home",
+          style: TextStyle(color: Colors.blue[600]),
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.today), label: 'Today'),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'List'),
-        ],
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 5,
+        child: Container(
+          height: 50,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

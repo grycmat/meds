@@ -23,7 +23,14 @@ class Meds extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blueGrey),
+      theme: ThemeData(
+        bottomAppBarTheme:
+            BottomAppBarTheme(color: Colors.white.withOpacity(0.9)),
+        accentColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white.withOpacity(0.9),
+        ),
+      ),
       home: const Home(),
     );
   }
