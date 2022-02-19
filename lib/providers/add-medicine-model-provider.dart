@@ -20,7 +20,7 @@ class AddMedicineModelProvider extends ChangeNotifier {
   List<TimeOfDay> get times => _times;
 
   Future<int> save() {
-    return Hive.box(MEDS).add(Med(
+    return Hive.box<Med>(MEDS).add(Med(
         frequency: _frequency,
         medName: _medName,
         medType: _medType,

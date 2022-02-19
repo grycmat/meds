@@ -9,7 +9,14 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const MedsList(),
+      body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage('assets/images/meds_background.jpg'),
+            ),
+          ),
+          child: const MedsList()),
       appBar: AppBar(
         centerTitle: true,
         shadowColor: Colors.blueGrey,
