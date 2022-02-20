@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -13,14 +15,26 @@ class Home extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: true,
-      body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage('assets/images/meds_background.jpg'),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/greg.jpg'),
+              ),
+            ),
+            // child: const MedsList(),
+          ),
+          ClipRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: Container(),
             ),
           ),
-          child: const MedsList()),
+          const MedsList()
+        ],
+      ),
       appBar: AppBar(
         elevation: 1,
         centerTitle: true,
