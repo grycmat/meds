@@ -36,12 +36,10 @@ class AddMedicine extends StatelessWidget {
                   child: FaIcon(FontAwesomeIcons.check))
             ],
           ),
-          body: const SingleChildScrollView(
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: AddMedicineStepper(),
-              ),
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: AddMedicineStepper(),
             ),
           ),
         ),

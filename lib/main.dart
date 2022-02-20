@@ -24,8 +24,9 @@ class Meds extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        bottomAppBarTheme:
-            BottomAppBarTheme(color: Colors.white.withOpacity(0.9)),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.white.withOpacity(0.9),
+        ),
         accentColor: Colors.white,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white.withOpacity(0.9),
